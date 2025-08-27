@@ -15,7 +15,7 @@
 
 <h2>About Me</h2>
 
-I’m focused on **Cloud, DevOps & Reliability Engineering** — managing **multi-cloud infrastructure**, implementing **DevOps best practices**, ensuring **cybersecurity**, and driving **cloud-native deployments** with a sharp eye on **cost optimization**.  
+I am a technology enthusiast with a background in **Cloud, DevOps & Reliability Engineering** — managing **multi-cloud infrastructure**, implementing **DevOps best practices**, ensuring **cybersecurity**, and driving **cloud-native deployments** with a sharp eye on **cost optimization**.  
 Strengths include **Reliability**, **Observability**, and **Distributed Systems**, building secure and efficient platforms at scale.
 
 Currently working at **Akamai Technologies**, building  
