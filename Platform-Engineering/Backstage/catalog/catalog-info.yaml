@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: buildin10-catalog
+  description: Buildin10 organization and commerce catalog
+spec:
+  targets:
+    - ./entities/organization.yaml
+    - ./entities/teams.yaml
+    - ./entities/system.yaml
+    - ./entities/components.yaml
+    - ./entities/apis.yaml
+    - ./entities/resources.yaml

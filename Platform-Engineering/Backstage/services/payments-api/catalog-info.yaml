@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: payments-api
+  annotations:
+    github.com/project-slug: YOUR_GITHUB_ORG/payments-api
+    backstage.io/kubernetes-label-selector: app.kubernetes.io/name=payments-api
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: service
+  lifecycle: production
+  owner: team-orders
+  system: fulfilment
+  providesApis: [payments-rest]

@@ -1,0 +1,33 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: payments-api
+  description: Processes payment requests for fulfillment
+  annotations:
+    github.com/project-slug: YOUR_GITHUB_ORG/payments-api
+    backstage.io/kubernetes-id: payments-api
+    backstage.io/kubernetes-label-selector: app.kubernetes.io/name=payments-api
+    backstage.io/techdocs-ref: url:https://github.com/YOUR_GITHUB_ORG/payments-api/tree/main
+spec:
+  type: service
+  lifecycle: production
+  owner: team-orders
+  system: fulfilment
+  providesApis: [payments-rest]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: orders-api
+  description: Manages customer orders
+  annotations:
+    github.com/project-slug: YOUR_GITHUB_ORG/orders-api
+    backstage.io/kubernetes-id: orders-api
+    backstage.io/kubernetes-label-selector: app.kubernetes.io/name=orders-api
+    backstage.io/techdocs-ref: url:https://github.com/YOUR_GITHUB_ORG/orders-api/tree/main
+spec:
+  type: service
+  lifecycle: production
+  owner: team-orders
+  system: fulfilment
+  consumesApis: [payments-rest]

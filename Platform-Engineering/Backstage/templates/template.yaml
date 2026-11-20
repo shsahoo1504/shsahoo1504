@@ -1,0 +1,94 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: buildin10-node-service
+  title: Buildin10 Node.js Service
+  description: Create, publish, and deploy a Node.js service through Buildin10.
+spec:
+  owner: team-orders
+  type: service
+  parameters:
+    - title: Service details
+      required: [name, description, owner, system]
+      properties:
+        name:
+          title: Service name
+          type: string
+          pattern: "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$"
+          description: The service and GitHub repository name.
+        description:
+          title: Description
+          type: string
+        owner:
+          title: Owner
+          type: string
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
+              "spec.type": team
+        system:
+          title: System
+          type: string
+          ui:field: EntityPicker
+          ui:options:
+            catalogFilter:
+              kind: System
+  steps:
+    - id: fetchService
+      name: Generate service
+      action: fetch:template
+      input:
+        url: ./skeleton-service
+        values:
+          name: ${{ parameters.name }}
+          description: ${{ parameters.description }}
+          owner: ${{ parameters.owner }}
+          system: ${{ parameters.system }}
+          ownerNamespace: YOUR_GITHUB_ORG
+    - id: fetchWorkflow
+      name: Add image workflow
+      action: fetch:template
+      input:
+        url: ./skeleton-workflow
+        targetPath: .github/workflows
+    - id: publishService
+      name: Publish service repository
+      action: publish:github
+      input:
+        repoUrl: github.com?owner=YOUR_GITHUB_ORG&repo=${{ parameters.name }}
+        description: ${{ parameters.description }}
+        repoVisibility: public
+        defaultBranch: main
+        protectDefaultBranch: false
+    - id: fetchGitOps
+      name: Generate GitOps manifests
+      action: fetch:template
+      input:
+        url: ./skeleton-gitops
+        targetPath: gitops/apps/${{ parameters.name }}
+        values:
+          name: ${{ parameters.name }}
+          image: ghcr.io/YOUR_GITHUB_ORG/${{ parameters.name }}
+          namespace: buildin10
+    - id: openGitOpsPR
+      name: Open GitOps pull request
+      action: publish:github:pull-request
+      input:
+        repoUrl: github.com?owner=YOUR_GITHUB_ORG&repo=gitops
+        branchName: scaffold/${{ parameters.name }}
+        title: Deploy ${{ parameters.name }}
+        description: Add GitOps manifests for ${{ parameters.name }}.
+        sourcePath: gitops
+        targetPath: .
+    - id: registerService
+      name: Register service in catalog
+      action: catalog:register
+      input:
+        catalogInfoUrl: ${{ steps.publishService.output.repoContentsUrl }}/catalog-info.yaml
+  output:
+    links:
+      - title: Service repository
+        url: ${{ steps.publishService.output.remoteUrl }}
+      - title: GitOps pull request
+        url: ${{ steps.openGitOpsPR.output.remoteUrl }}

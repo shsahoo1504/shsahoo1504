@@ -1,0 +1,30 @@
+openapi: 3.0.3
+info:
+  title: Payments REST API
+  version: 1.0.0
+paths:
+  /health:
+    get:
+      summary: Check service health
+      responses:
+        "200":
+          description: Service is healthy
+  /payments:
+    post:
+      summary: Create a payment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [orderId, amount]
+              properties:
+                orderId:
+                  type: string
+                amount:
+                  type: number
+                  minimum: 0
+      responses:
+        "201":
+          description: Payment accepted

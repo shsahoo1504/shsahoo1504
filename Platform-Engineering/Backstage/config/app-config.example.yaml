@@ -1,0 +1,65 @@
+app:
+  title: Buildin10
+  baseUrl: ${BACKSTAGE_APP_BASE_URL}
+
+organization:
+  name: Buildin10
+
+backend:
+  baseUrl: ${BACKSTAGE_BACKEND_BASE_URL}
+  listen:
+    port: 7007
+  csp:
+    connect-src: ["'self'", "http:", "https:"]
+  cors:
+    origin: ${BACKSTAGE_APP_BASE_URL}
+    methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
+    credentials: true
+
+integrations:
+  github:
+    - host: github.com
+      token: ${GITHUB_TOKEN}
+
+catalog:
+  rules:
+    - allow:
+        - Component
+        - System
+        - API
+        - Resource
+        - Location
+        - Template
+        - User
+        - Group
+        - Domain
+  locations:
+    - type: url
+      target: https://github.com/YOUR_GITHUB_ORG/catalog/blob/main/catalog-info.yaml
+    - type: url
+      target: https://github.com/YOUR_GITHUB_ORG/templates/blob/main/template.yaml
+
+scaffolder:
+  defaultAuthor:
+    name: Buildin10 Platform
+    email: platform@example.invalid
+  defaultCommitMessage: "Create service from Buildin10 template"
+
+kubernetes:
+  serviceLocatorMethod:
+    type: multiTenant
+  clusterLocatorMethods:
+    - type: config
+      clusters:
+        - name: buildin10-kind
+          authProvider: serviceAccount
+          skipTLSVerify: true
+          serviceAccountToken: ${BACKSTAGE_K8S_SERVICE_ACCOUNT_TOKEN}
+          url: ${KUBERNETES_API_URL}
+
+techdocs:
+  builder: local
+  generator:
+    runIn: local
+  publisher:
+    type: local

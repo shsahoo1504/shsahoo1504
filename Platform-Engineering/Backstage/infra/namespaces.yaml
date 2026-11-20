@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: buildin10
+  labels:
+    buildin10.dev/environment: demo
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: argocd
+  labels:
+    buildin10.dev/environment: demo

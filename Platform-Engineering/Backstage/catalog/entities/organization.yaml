@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: commerce
+  description: Commerce capabilities
+spec:
+  owner: team-orders
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: buildin10
+  description: Buildin10 engineering organization
+spec:
+  type: organization
+  profile:
+    displayName: Buildin10
+  children: [engineering]

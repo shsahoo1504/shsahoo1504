@@ -1,0 +1,16 @@
+[Unit]
+Description=Buildin10 Backstage
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=platform
+WorkingDirectory=/opt/buildin10/buildin10
+EnvironmentFile=/opt/buildin10/buildin10/.backstage.env
+ExecStart=/usr/bin/yarn start
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

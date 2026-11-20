@@ -1,0 +1,35 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: engineering
+  description: Buildin10 engineering
+spec:
+  type: department
+  profile:
+    displayName: Engineering
+  parent: buildin10
+  children: [team-orders, team-payments]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: team-orders
+  description: Owns order services and fulfillment experiences
+spec:
+  type: team
+  profile:
+    displayName: Team Orders
+  parent: engineering
+  children: []
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: team-payments
+  description: Owns payment capabilities
+spec:
+  type: team
+  profile:
+    displayName: Team Payments
+  parent: engineering
+  children: []
