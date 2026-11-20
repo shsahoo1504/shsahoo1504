@@ -6,15 +6,30 @@ The demonstration follows the complete developer path:
 
 **Developer → Backstage → GitHub → GitHub Actions → GHCR → GitOps → Argo CD → Kubernetes**
 
+## Why build this platform
+
+Developers need one place to discover services, understand ownership, create repositories, deploy applications, and inspect Kubernetes without learning every underlying tool.
+
+Buildin10 demonstrates that experience by putting Backstage at the front of the workflow while GitHub, GitHub Actions, GHCR, Argo CD, and Kubernetes handle the delivery lifecycle.
+
 ## Architecture
 
-![Buildin10 developer platform architecture](docs/images/buildin10-architecture.png)
+This is the exact platform you will build and showcase in the walkthrough:
 
-Developers discover existing services and create new ones through Backstage. The template creates a GitHub repository and GitOps pull request. GitHub Actions publishes the container image to GHCR, Argo CD reconciles the merged manifests, and Backstage provides read-only visibility into the resulting Kubernetes workloads.
+![What we build: the complete Buildin10 developer platform architecture](docs/images/buildin10-architecture.png)
+
+The diagram explains where every responsibility lives:
+
+- **Developer and Backstage** — discover services and start self-service creation.
+- **GitHub** — stores the catalog, templates, application source, and GitOps repositories.
+- **GitHub Actions and GHCR** — build the service and publish its container image.
+- **Argo CD** — watches the merged GitOps desired state and reconciles it into the cluster.
+- **Kubernetes** — runs the Deployments, Services, and pods.
+- **Backstage Kubernetes view** — reads the deployed workloads so developers can see runtime status from the same portal.
 
 ## Video
 
-> **Video walkthrough: link coming soon.** Add the published YouTube link here before announcing the repository.
+- [Buildin10: Build a Complete Internal Developer Platform with Backstage](https://youtu.be/nGtywbBn7Xo)
 
 ## What this demo teaches
 
