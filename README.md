@@ -25,7 +25,7 @@ Currently working at **Akamai Technologies**, building
 ## 🤝 Contact
 <p align="center">
   <a href="https://youtube.com/@BuildIn10?sub_confirmation=1" target="_blank">
-    <img src="https://img.shields.io/badge/YouTube-Subscribe-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Subscribe to Buildin10 on YouTube"/>
+    <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Subscribe to Buildin10 on YouTube"/>
   </a>
   <a href="mailto:1504shubham@gmail.com" target="_blank">
     <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/>
